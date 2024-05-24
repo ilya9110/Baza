@@ -29,7 +29,7 @@ def add_employee():
     db.session.commit()
     return {"success": 'Rashodniki added successfully'}
 
-@app.route('/get_rashodnik/<int:id>')
+@app.route('/get_rashodniki/<int:id>')
 def get_rashodniki(id):
     rashodniki = Rashodniki.query.get(id)
     if rashodniki:
