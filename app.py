@@ -7,39 +7,39 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employees.db'
 
 db = SQLAlchemy(app)
 
-class Employee(db.Model):
+class Rashodniki(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
-    position = db.Column(db.String(50))
+    ostatok = db.Column(db.String(50))
 
-    def __init__(self, name, position):
+    def __init__(self, name, ostatok):
         self.name = name
-        self.position = position
+        self.ostatok = ostatok
 
 
 with app.app_context():
     db.create_all()
 
-@app.route('/add_employee', methods=['POST'])
+@app.route('/add_rashodniki', methods=['POST'])
 def add_employee():
     name = request.form['name']
-    position = request.form['position']
-    employee = Employee(name, position)
-    db.session.add(employee)
+    ostatok = request.form['ostatok']
+    rashodniki = Rashodniki(name, ostatok)
+    db.session.add(rashodniki)
     db.session.commit()
-    return {"success": 'Employee added successfully'}
+    return {"success": 'Rashodniki added successfully'}
 
-@app.route('/get_employee/<int:id>')
-def get_employee(id):
-    employee = Employee.query.get(id)
-    if employee:
+@app.route('/get_rashodnik/<int:id>')
+def get_rashodniki(id):
+    rashodniki = Rashodniki.query.get(id)
+    if rashodniki:
         return jsonify({
-            'id': employee.id,
-            'name': employee.name,
-            'position': employee.position
+            'id': rashodniki.id,
+            'name': rashodniki.name,
+            'ostatok': rashodniki.ostatok
         })
     else:
-        return {'error': 'Employee not found'}
+        return {'error': 'Rashodniki not found'}
 
 
 
