@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employees.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///rashodniki.db'
 
 db = SQLAlchemy(app)
 
